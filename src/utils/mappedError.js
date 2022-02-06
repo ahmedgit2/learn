@@ -14,7 +14,6 @@ export function mapAxiosError(error) {
   } else {
     const status = error.response.status;
     const causeError = error.response.data?.error;
-    console.log('sssss-------->', causeError);
     switch (status) {
       case 401:
         return new UnAuthenticatedError();

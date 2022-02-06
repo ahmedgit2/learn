@@ -1,18 +1,9 @@
-import {View, Text} from 'react-native';
-import React, {useState} from 'react';
-import {getProviderIssue} from '../../api/gitProviderIssue';
+import {View, Text, ActivityIndicator} from 'react-native';
+import React from 'react';
+import {ProviderBidsHOC} from '../../hoc';
 
-export const TestApi = () => {
-  const [errors, setErrors] = useState();
-  try {
-    const data = getProviderIssue();
-  } catch (error) {
-    setErrors(error);
-  }
-  console.log('ssssssssss', errors?.message);
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>HIIII</Text>
-    </View>
-  );
+const TestApi = () => {
+  return <ProviderBidsHOC />;
 };
+
+export {TestApi};
