@@ -1,30 +1,39 @@
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {getProviderBids} from '../api';
 
 export const useFindProviderBids = (page, lat, lng, orderType) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
-  const getBidsPage = async () => {
-    console.log(page);
+  const getBids = async () => {
     try {
       setLoading(true);
       setData(undefined);
-      const user = await getProviderBids({page, lat, lng, orderType});
-      if (user.data.length) {
-        setData(user.data);
+      const providerBids = await getProviderBids({
+        page: page,
+        lat: lat,
+        lng: lng,
+        orderType: orderType,
+      });
+
+      if (providerBids.data.length > 0) {
+        if (page > 1) setData([...data, ...providerBids.data]);
+        else {
+          setData(providerBids.data);
+        }
       }
-      setLoading(false);
     } catch (error) {
       setError(error);
+    } finally {
       setLoading(false);
     }
   };
+
   return {
     loading,
     data,
     error,
-    getBidsPage,
+    getBids,
   };
 };
