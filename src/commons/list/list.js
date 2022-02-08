@@ -1,14 +1,13 @@
 import {View, Text, FlatList} from 'react-native';
 import React from 'react';
-import {ProviderIssueCard} from '.';
 
-export const ProviderListIssue = props => {
-  const {data, fetchMore} = props;
+export const AppList = props => {
+  const {data, onEndReached} = props;
   return (
     <>
       <FlatList
         data={data}
-        onEndReached={fetchMore}
+        onEndReached={onEndReached}
         keyExtractor={(item, index) => item.id.toString()}
         renderItem={({item}) => {
           return <ProviderIssueCard provider={item} />;

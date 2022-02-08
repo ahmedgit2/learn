@@ -1,25 +1,30 @@
-import React, {useEffect, useState} from 'react';
-import {useFindProviderBids} from '../hooks';
+import React, {useEffect, useRef, useState} from 'react';
+import {useGetProviderBids, useGetProviderBidsNextPage} from '../hooks';
 
-import {AppLoading} from '../commons';
+import {AppLoading, AppText, AppButton} from '../commons';
 import {ProviderListIssue} from '../components';
-import {Button, Text} from 'react-native';
 
 export const ProviderBidsHOC = () => {
-  const {loading, data, error, getBids} = useFindProviderBids();
-
-  useEffect(() => {
-    getBids();
-  }, []);
+  const {loading, data, error, fetchMore} = useGetProviderBids();
 
   if (loading) return <AppLoading color={'green'} />;
-  else if (error) return <Text>{error}</Text>;
-  else
-    return (
-      <>
-        <Button title="refresh" onPress={() => {}} />
-        <ProviderListIssue data={data} />
-        <Button title="next" onPress={() => {}} />
-      </>
-    );
+  if (error) return <AppText>{error}</AppText>;
+  //   if (data.length) {  }
+
+  return (
+    <>
+      <AppButton
+        text="refresh"
+        onPress={() => {
+          //   setPage(() => 1);
+        }}
+      />
+      <ProviderListIssue data={data} fetchMore={fetchMore} />
+
+      <AppButton
+        text="next"
+        //   onPress={() => setPage(page + 1)}
+      />
+    </>
+  );
 };

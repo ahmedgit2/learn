@@ -1,3 +1,3 @@
 export * from './useFindProviderIssues';
-export * from './useFindProviderBids';
-export * from './useGetMoreBids';
+export * from './useGetProviderBids';
+export * from './useGetProviderBidsNextPage';
