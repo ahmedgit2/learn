@@ -1,6 +1,6 @@
 import {View, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
-import {styles} from './styles';
+import {styles} from './style';
 export const AppLoading = props => {
   const {size, color, style, containerStyle} = props;
   return (
@@ -8,7 +8,7 @@ export const AppLoading = props => {
       <ActivityIndicator
         size={size || 'large'}
         style={[styles.style, style]}
-        color={color || 'red'}
+        color={color || '#7267CB'}
       />
     </View>
   );

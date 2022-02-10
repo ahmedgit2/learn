@@ -5,13 +5,33 @@ export const useGetProviderBids = (lat, lng, orderType) => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
-  const [fetchMoreLoading, setFetchMoreLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [totalBidsCount, setTotalBidsCount] = useState(false);
   const [pageCount, setPageCount] = useState();
   const [error, setError] = useState('');
-  const getBids = async setLOADING => {
+
+  useEffect(() => {
+    if (page == 1) {
+      getBids();
+    } else if (page > 1 && pageCount >= page) {
+      getBids();
+    }
+  }, [page]);
+
+  const refreshing = () => {
+    setPage(1);
+    setRefresh(true);
+    getBids();
+  };
+
+  const fetchMore = () => {
+    setPage(page + 1);
+    setLoading(true);
+  };
+
+  const getBids = async () => {
     try {
       // set loading coming from calling func
-      setLOADING(true);
       //cal func to get api
       const providerBids = await getProviderBids({
         page: page,
@@ -19,6 +39,7 @@ export const useGetProviderBids = (lat, lng, orderType) => {
         lng: lng,
         orderType: orderType,
       });
+
       // check data
       if (providerBids.data.length) {
         setPageCount(providerBids.pageCount);
@@ -28,28 +49,24 @@ export const useGetProviderBids = (lat, lng, orderType) => {
         if (page > 1) {
           setData([...data, ...providerBids.data]);
         }
+
+        setTotalBidsCount(providerBids.totalCount);
       }
     } catch (error) {
       setError(error);
     } finally {
-      setLOADING(false);
+      setLoading(false);
+      setRefresh(false);
     }
   };
-  useEffect(() => {
-    if (page == 1) {
-      getBids(setLoading);
-    } else if (page > 1 && pageCount >= page) {
-      getBids(setFetchMoreLoading);
-    }
-  }, [page]);
-  const fetchMore = () => {
-    setPage(page + 1);
-  };
+
   return {
     loading,
     data,
     error,
-    fetchMoreLoading,
+    refresh,
+    totalBidsCount,
+    refreshing,
     fetchMore,
   };
 };

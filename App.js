@@ -3,18 +3,13 @@ import React from 'react';
 import {SideMenu} from './learn/sideMenu';
 import {NavigationContainer} from '@react-navigation/native';
 import {AxiosLearning} from './learn/axios';
-import {TestApi} from './src/screens';
+import {DetailsScreen, HomeScreen, TestApi} from './src/screens';
+import {HomeStack} from './src/navigator';
 
 export default function App() {
-  //   return <AxiosLearning />;
-  //   {
-  //     //     <NavigationContainer>
-  //     //   <SideMenu />
-  //     // </NavigationContainer>
-  //   }
   return (
-    <>
-      <TestApi />
-    </>
+    <NavigationContainer>
+      <HomeStack />
+    </NavigationContainer>
   );
 }

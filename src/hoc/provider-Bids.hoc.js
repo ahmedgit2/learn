@@ -1,29 +1,20 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {useGetProviderBids, useGetProviderBidsNextPage} from '../hooks';
-
-import {AppLoading, AppText, AppButton} from '../commons';
-import {ProviderListIssue} from '../components';
+import {ProviderBidsHeader} from '../components/providerBids/provider-Bids-Main-Header.component';
+import {ProviderListBids} from '../components/providerBids/provider-list-Bids.component';
+import {useGetProviderBids} from '../hooks';
 
 export const ProviderBidsHOC = () => {
-  const {loading, data, error, fetchMore} = useGetProviderBids();
-
-  if (loading) return <AppLoading color={'green'} />;
-  if (error) return <AppText>{error}</AppText>;
-  //   if (data.length) {  }
-
+  const {loading, data, error, totalBidsCount, refresh, refreshing, fetchMore} =
+    useGetProviderBids();
   return (
     <>
-      <AppButton
-        text="refresh"
-        onPress={() => {
-          //   setPage(() => 1);
-        }}
-      />
-      <ProviderListIssue data={data} fetchMore={fetchMore} />
-
-      <AppButton
-        text="next"
-        //   onPress={() => setPage(page + 1)}
+      <ProviderBidsHeader count={totalBidsCount} />
+      <ProviderListBids
+        loading={loading}
+        data={data}
+        refresh={refresh}
+        refreshing={refreshing}
+        fetchMore={fetchMore}
       />
     </>
   );
