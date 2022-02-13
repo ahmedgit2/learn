@@ -7,3 +7,4 @@ export * from './rate/rate';
 export * from './image/image';
 export * from './dateTime/dateTime';
 export * from './textLogo/textLogo';
+export * from './text/new-tex.common';

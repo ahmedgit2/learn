@@ -2,17 +2,17 @@ import React from 'react';
 import {View} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
-import {AppImage} from '../../commons';
+import {AppButton, AppImage, AppNewText} from '../../commons';
 import {formatDate} from '../../utils/formatDate';
 import {styles} from './style';
 import {
-  AppButton,
   AppDateTime,
   AppGrid,
   AppTextLogo,
   AppRate,
   AppText,
 } from '../../commons';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export const ProviderBidsCard = ({bids, onPress}) => {
   const {client} = bids;
@@ -21,33 +21,32 @@ export const ProviderBidsCard = ({bids, onPress}) => {
   const dropOffCity = `${bids.dropOffCity.name} -${bids.dropOffCity.governorate.name}`;
 
   return (
-    <AppGrid style={styles.cardGridStyle}>
-      <AppButton onPress={onPress}>
-        <View style={styles.cardContainerStyle}>
-          <View style={styles.cardTextContainerStyle}>
-            <View style={styles.clientNameContainerStyle}>
-              <AppRate text={client.rate} />
-              <AppText text={client.user.name} />
-            </View>
-            <View style={styles.bidDateContainerStyle}>
-              <AppDateTime text={createDate} />
-            </View>
+    <AppGrid style={styles.cardGridStyle} onPress={onPress}>
+      <View style={styles.cardContainerStyle}>
+        <View style={styles.cardTextContainerStyle}>
+          <View style={styles.clientNameContainerStyle}>
+            <AppRate text={client.rate} />
+            {/* <AppText text={client.user.name} /> */}
+            <AppNewText>{client.user.name}</AppNewText>
           </View>
-          <AppImage source={{uri: client.user.profileImg.thumbnail}} />
+          <View style={styles.bidDateContainerStyle}>
+            <AppDateTime text={createDate} />
+          </View>
         </View>
-        <View style={styles.bidLocationContainerStyle}>
-          <AppTextLogo
-            text={pickUpCity}
-            logoName={'location-exit'}
-            logoColor={'#8BDB81'}
-          />
-          <AppTextLogo
-            text={dropOffCity}
-            logoName={'location-enter'}
-            logoColor={'#FC4F4F'}
-          />
-        </View>
-      </AppButton>
+        <AppImage source={{uri: client.user.profileImg.thumbnail}} />
+      </View>
+      <View style={styles.bidLocationContainerStyle}>
+        <AppTextLogo
+          text={pickUpCity}
+          logoName={'location-exit'}
+          logoColor={'#8BDB81'}
+        />
+        <AppTextLogo
+          text={dropOffCity}
+          logoName={'location-enter'}
+          logoColor={'#FC4F4F'}
+        />
+      </View>
     </AppGrid>
   );
 };

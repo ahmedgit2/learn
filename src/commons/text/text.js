@@ -3,12 +3,23 @@ import React from 'react';
 import {styles} from './style';
 
 export const AppText = props => {
-  const {text, textColor = '#6E3CBC', textSize = 18, fontWeight, style} = props;
+  const {
+    text,
+    textColor = '#6E3CBC',
+    textSize = 18,
+    fontWeight,
+    style,
+    margin,
+  } = props;
   return (
     <View style={[styles.containerStyle, style]}>
       <Text
-        style={{color: textColor, fontSize: textSize, fontWeight: fontWeight}}>
-        {text}{' '}
+        style={{
+          color: textColor,
+          fontSize: textSize,
+          fontWeight: fontWeight,
+        }}>
+        {text}
       </Text>
     </View>
   );

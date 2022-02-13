@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {AxiosLearning} from './learn/axios';
 import {DetailsScreen, HomeScreen, TestApi} from './src/screens';
 import {HomeStack} from './src/navigator';
+import {AppText} from './src/commons';
 
 export default function App() {
   return (

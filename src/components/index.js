@@ -1,3 +1,3 @@
-export * from './providerIssues';
-export * from './providerBids';
-export * from './providerBidDetails';
+export * from './providerIssues/index';
+export * from './providerBids/index';
+export * from './providerBidDetails/index';

@@ -4,12 +4,12 @@ import {AppText} from '../index';
 import {styles} from './style';
 
 export const AppButton = props => {
-  const {text, style, onPress} = props;
+  const {title, style, onPress} = props;
   return (
-    <>
-      <RectButton style={[styles.buttonStyle, style]} onPress={onPress}>
-        {text ? <AppText text={text} /> : props.children}
-      </RectButton>
-    </>
+    <RectButton
+      title={title}
+      style={[styles.buttonStyle, style]}
+      onPress={onPress}
+    />
   );
 };

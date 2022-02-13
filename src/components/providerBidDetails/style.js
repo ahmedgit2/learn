@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
   cardGridStyle: {
     marginHorizontal: 20,
     marginVertical: 10,
+    flexGrow: 0,
   },
 
   backButtonStyle: {
@@ -22,21 +23,31 @@ export const styles = StyleSheet.create({
   },
   bidLocationContainerStyle: {
     flexGrow: 1,
-    marginBottom: 15,
     marginRight: 20,
     alignSelf: 'stretch',
     alignItems: 'flex-end',
   },
+  bidDetailsContainerStyle: {
+    flexGrow: 1,
+    marginRight: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+  },
+  bidStatusStyle: {
+    backgroundColor: '#E2E2E2',
+    borderRadius: 8,
+    marginHorizontal: 10,
+    alignSelf: 'flex-start',
+    justifyContent: 'space-around',
+    paddingHorizontal: 10,
+    paddingVertical: 1,
+  },
   bidDateContainerStyle: {
     flexDirection: 'row',
-    flexGrow: 1,
-    alignSelf: 'flex-start',
-    marginTop: 5,
-    marginBottom: 10,
+    justifyContent: 'space-between',
   },
   cardContainerStyle: {
-    margin: 15,
-    flexGrow: 1,
+    margin: 12,
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
@@ -44,8 +55,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flexGrow: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginHorizontal: 10,
-    marginTop: 10,
+    marginTop: 8,
   },
 });

@@ -13,28 +13,17 @@ import {
   AppText,
 } from '../../commons';
 
-export const BidDetailsLocationCard = ({bids}) => {
-  const {client, id} = bids;
-  const createDate = formatDate(bids.createdAt);
-  const pickUpCity = `${bids.pickUpCity.name} - ${bids.pickUpCity.governorate.name}`;
-  const dropOffCity = `${bids.dropOffCity.name} -${bids.dropOffCity.governorate.name}`;
+export const BidDetailsLocationCard = props => {
+  const {data} = props;
+  const title = `${data.pickUpCity.governorate.name} - ${data.dropOffCity.governorate.name}`;
+  const pickUpCity = `${data.pickUpCity.name} - ${data.pickUpCity.governorate.name}`;
+  const dropOffCity = `${data.dropOffCity.name} -${data.dropOffCity.governorate.name}`;
 
   return (
     <AppGrid style={styles.cardGridStyle}>
-      <AppButton>
-        <View style={styles.cardContainerStyle}>
-          <View style={styles.cardTextContainerStyle}>
-            <View style={styles.clientNameContainerStyle}>
-              <AppRate text={client.rate} />
-              <AppText text={client.user.name} />
-            </View>
-            <View style={styles.bidDateContainerStyle}>
-              <AppDateTime text={createDate} />
-            </View>
-          </View>
-          <AppImage source={{uri: client.user.profileImg.thumbnail}} />
-        </View>
+      <View style={styles.cardContainerStyle}>
         <View style={styles.bidLocationContainerStyle}>
+          <AppText text={title} fontWeight={'bold'} />
           <AppTextLogo
             text={pickUpCity}
             logoName={'location-exit'}
@@ -46,7 +35,7 @@ export const BidDetailsLocationCard = ({bids}) => {
             logoColor={'#FC4F4F'}
           />
         </View>
-      </AppButton>
+      </View>
     </AppGrid>
   );
 };

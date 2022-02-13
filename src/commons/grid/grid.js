@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Pressable} from 'react-native';
 import {styles} from './style';
 
 export const AppGrid = props => {
-  const {style} = props;
-  return <View style={[styles.containerStyle, style]}>{props.children}</View>;
+  const {style, onPress} = props;
+  return (
+    <Pressable onPress={onPress}>
+      <View style={[styles.containerStyle, style]}>{props.children}</View>
+    </Pressable>
+  );
 };
