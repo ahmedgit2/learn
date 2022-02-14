@@ -1,5 +1,5 @@
 import React from 'react';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 import {useGetBidDetails} from '../hooks';
 import {AppButton, AppLoading, AppText} from '../commons';
@@ -13,6 +13,7 @@ import {
 
 export const ProviderBidsDetailsHOC = () => {
   const {bidId} = useRoute().params;
+  const navigation = useNavigation();
   const {loading, data, error} = useGetBidDetails(bidId);
 
   if (Object.keys(data).length) {
@@ -28,6 +29,10 @@ export const ProviderBidsDetailsHOC = () => {
         <BidDetailsCard title={'نوع المركبة'} text={vehicleType} />
         <BidDetailsCard title={'الخدمة المطلوبة'} text={serviceType} />
         <BidDetailsCard title={'تاريخ التنفيذ'} text={executionDate} />
+        <AppButton
+          title={'تقديم عرض سعر'}
+          onPress={navigation.navigate('sendOffer', {data: data})}
+        />
       </>
     );
   } else {

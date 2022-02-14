@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {AppLoading, ERRORModal} from '../commons';
 import {ProviderBidsHeader} from '../components/providerBids/provider-Bids-Main-Header.component';
 import {ProviderListBids} from '../components/providerBids/provider-list-Bids.component';
-import {useGetProviderBids} from '../hooks';
+import {useGetSpecificProviderBids} from '../hooks';
 
-export const ProviderBidsHOC = () => {
+export const ProviderBidsSpecificHOC = () => {
   const {loading, data, error, totalBidsCount, refresh, refreshing, fetchMore} =
-    useGetProviderBids();
+    useGetSpecificProviderBids();
   const [isModalVisible, setModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   useEffect(() => {
@@ -17,22 +17,26 @@ export const ProviderBidsHOC = () => {
   const _onClose = () => {
     setModalVisible(false);
   };
-  return (
-    <>
-      <ProviderBidsHeader count={totalBidsCount} />
-      <ProviderListBids
-        loading={loading}
-        data={data}
-        refresh={refresh}
-        refreshing={refreshing}
-        fetchMore={fetchMore}
-      />
-      <ERRORModal
-        onPress={_onClose}
-        Visible={isModalVisible}
-        error={errorMessage}
-        onClose={_onClose}
-      />
-    </>
-  );
+  if (data && !refresh) {
+    return (
+      <>
+        <ProviderBidsHeader count={totalBidsCount} />
+        <ProviderListBids
+          loading={loading}
+          data={data}
+          refresh={refresh}
+          refreshing={refreshing}
+          fetchMore={fetchMore}
+        />
+        <ERRORModal
+          onPress={_onClose}
+          Visible={isModalVisible}
+          error={errorMessage}
+          onClose={_onClose}
+        />
+      </>
+    );
+  } else {
+    return <AppLoading />;
+  }
 };

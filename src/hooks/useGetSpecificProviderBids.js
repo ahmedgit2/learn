@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import {getProviderBids} from '../api';
 
-export const useGetProviderBids = (lat, lng, orderType) => {
+export const useGetSpecificProviderBids = (lat, lng, orderType) => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,7 @@ export const useGetProviderBids = (lat, lng, orderType) => {
         page: page,
         lat: lat,
         lng: lng,
-        orderType: 'GENERAL',
+        orderType: 'SPECIFIC',
       });
       // check data
       if (providerBids.data.length) {
@@ -50,6 +50,7 @@ export const useGetProviderBids = (lat, lng, orderType) => {
         if (page > 1) {
           setData([...data, ...providerBids.data]);
         }
+
         setTotalBidsCount(providerBids.totalCount);
       }
     } catch (error) {

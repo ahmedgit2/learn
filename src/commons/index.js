@@ -1,4 +1,5 @@
 export * from './loading/loading';
+export * from './input/input';
 export * from './button/button';
 export * from './grid/grid';
 export * from './list/list';
@@ -8,3 +9,5 @@ export * from './image/image';
 export * from './dateTime/dateTime';
 export * from './textLogo/textLogo';
 export * from './text/new-tex.common';
+export * from './errorModal/errorModal';
+export * from './clickableText/clickableText';
