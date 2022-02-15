@@ -1,6 +1,10 @@
 import React from 'react';
-import {ProviderBidsHOC} from '../../hoc';
+import {HomeScreenHOC} from '../../hoc';
 
 export const HomeScreen = () => {
-  return <ProviderBidsHOC />;
+  return (
+    <>
+      <HomeScreenHOC />
+    </>
+  );
 };

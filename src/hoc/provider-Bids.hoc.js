@@ -9,6 +9,7 @@ export const ProviderBidsHOC = () => {
     useGetProviderBids();
   const [isModalVisible, setModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
   useEffect(() => {
     if (error) {
       setErrorMessage(error);
@@ -17,6 +18,10 @@ export const ProviderBidsHOC = () => {
   const _onClose = () => {
     setModalVisible(false);
   };
+
+  if (loading) {
+    return <AppLoading />;
+  }
   return (
     <>
       <ProviderBidsHeader count={totalBidsCount} />

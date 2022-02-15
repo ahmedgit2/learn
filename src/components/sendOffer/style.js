@@ -10,12 +10,16 @@ export const styles = StyleSheet.create({
   vehivlesSelectStyle: {
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
     marginTop: 10,
     padding: 3,
+    // backgroundColor: 'red',
   },
   inputCardText: {
     flexDirection: 'row',
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    marginBottom: 15,
   },
   inputCard: {
     marginBottom: 15,
@@ -25,7 +29,7 @@ export const styles = StyleSheet.create({
   cardGridStyle: {
     marginHorizontal: 20,
     marginVertical: 10,
-    flexGrow: 0,
+    flexGrow: 1,
   },
 
   backButtonStyle: {

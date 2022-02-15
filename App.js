@@ -1,13 +1,12 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {HomeStack} from './src/navigator';
-import {SendBidScreen} from './src/screens';
+import {AppContainer} from './src/navigator';
+import {store} from './src/store/store';
+import {Provider} from 'react-redux';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <HomeStack />
-    </NavigationContainer>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
   );
-  //   return <SendBidScreen />;
 }

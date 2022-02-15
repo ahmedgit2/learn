@@ -16,9 +16,9 @@ export function mapAxiosError(error) {
     const causeError = error.response.data?.error;
     switch (status) {
       case 401:
-        return new UnAuthenticatedError();
+        return new UnAuthenticatedError(causeError.errors[0].message);
       case 403:
-        return new ForbiddenError();
+        return new ForbiddenError(causeError.errors[0].message);
       case 400:
         return new BadRequestError(causeError.errors[0].message);
       case 422:

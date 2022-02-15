@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
-import { ScrollView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
-import { useGetVehicles, usePostOffer } from '../hooks';
-import { AppButton, AppLoading } from '../commons';
+import React, {useEffect, useRef, useState} from 'react';
+import {ScrollView} from 'react-native';
+import {useRoute} from '@react-navigation/native';
+import {useGetVehicles, usePostOffer} from '../hooks';
+import {AppButton, AppLoading, ERRORModal} from '../commons';
 import {
   ClintCard,
   Header,
@@ -12,35 +12,64 @@ import {
 } from '../components';
 
 export const SendBidHOC = () => {
-  const { data } = useRoute().params;
-
+  const {data} = useRoute().params;
+  console.log('data----------------->', data);
   providerId = 144;
   const orderBidId = data.id;
   const providerVehicle = useRef();
   const transportationPrice = useRef();
-  const notes = useRef();
+  const notes = useRef('');
 
-  const { post } = usePostOffer({
+  const {post, error} = usePostOffer({
     orderBidId: orderBidId,
-    transportationPrice: transportationPrice.current,
-    providerVehicle: providerVehicle.current,
+    transportationPrice: Number(transportationPrice.current),
+    providerVehicle: Number(providerVehicle.current),
     notes: notes.current,
   });
 
-
-  const vehicles = useGetVehicles(providerId);
-  if (Object.keys(vehicles).length) {
-    return (
-      <ScrollView>
-        <Header />
-        <ClintCard data={ data } />
-        <VehiclesCard data={ vehicles.data } passSelected={ (val) => providerVehicle.current = val } />
-        <InputCard onChangeText={ (value) => transportationPrice.current = value } />
-        <NotesCard onChangeText={ (value) => notes.current = value } />
-        <AppButton onPress={ () => post() } title={ 'إرسال' } />
-      </ScrollView>
-    );
-  } else {
+  const {data: vehicles, loading} = useGetVehicles(providerId);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  useEffect(() => {
+    if (error.message) {
+      setModalVisible(true);
+      setErrorMessage(error.message);
+    }
+  }, [error]);
+  const _onClose = () => {
+    setModalVisible(false);
+  };
+  if (loading) {
     return <AppLoading />;
   }
+  return (
+    <>
+      <ScrollView>
+        <Header />
+        <ClintCard data={data} />
+        <VehiclesCard
+          data={vehicles}
+          passSelected={val => (providerVehicle.current = val)}
+        />
+        <InputCard
+          onChangeText={value => (transportationPrice.current = value)}
+        />
+        <NotesCard onChangeText={value => (notes.current = value)} />
+        <AppButton
+          onPress={async () => {
+            setErrorMessage('');
+            await post();
+          }}
+          title={'إرسال'}
+        />
+      </ScrollView>
+      <ERRORModal
+        t
+        onPress={_onClose}
+        Visible={isModalVisible}
+        error={errorMessage}
+        onClose={_onClose}
+      />
+    </>
+  );
 };

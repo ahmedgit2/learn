@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from 'react';
 import {getVehicles} from '../api';
 
 export const useGetVehicles = ProviderId => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -14,6 +14,7 @@ export const useGetVehicles = ProviderId => {
     try {
       // set loading coming from calling func
       //cal func to get api
+      setLoading(true);
       const providerVehicles = await getVehicles({id: ProviderId});
 
       // check data

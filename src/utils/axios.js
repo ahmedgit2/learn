@@ -1,19 +1,33 @@
 import axios from 'axios';
+import {useSelector} from 'react-redux';
+import {store} from '../store/store';
+
+const selectState = () => {
+  const language = useSelector(state => state.authorization.language);
+  const key = useSelector(state => state.authorization.authKey);
+
+  return {
+    language,
+    key,
+  };
+};
 
 const instance = axios.create({
   baseURL: 'http://159.65.190.62:3333/api/v1/',
 });
+
 instance.interceptors.request.use(
   config => {
     config.headers = {
       ...config.headers,
-      'Accept-Language': 'ar',
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE0NCwiaXNzIjoiQXBwLlRyYW5zcG9ydGF0aW9uIiwiaWF0IjoxNjQ0MTQzOTE4LjYwMSwibG9naW5BcyI6IlVTRVIiLCJleHAiOjE5NTk3MTk5MTh9.Zn4RH8ZrnidhOIJa7tuFLeq8y8flWeXZDrcSMWJFff0`,
+      'Accept-Language': store.getState().authorization.language,
+      Authorization: `Bearer ${store.getState().authorization.authKey}`,
     };
-
+    console.log('interceptors config ==>', config);
     return config;
   },
   error => {
+    // console.log('interceptors error ==>', error);
     return Promise.reject(error);
   },
 );

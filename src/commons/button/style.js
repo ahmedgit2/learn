@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-end',
-    marginVertical: 20,
     flexGrow: 1,
   },
   buttonStyle: {

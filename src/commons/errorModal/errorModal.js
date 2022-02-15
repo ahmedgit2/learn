@@ -16,13 +16,14 @@ export function ERRORModal({error, Visible, onBack, onPress, onClose}) {
       onDismiss={onClose}
       isVisible={Visible}
       backdropOpacity={0.4}
-      onBackdropPress={onBack}>
+      onBackdropPress={onClose}>
       <AppGrid style={ModalStyle.centeredView}>
         <AppText text={error} style={ModalStyle.modalText} />
         <AppButton
+          touchableOpacity
           title={'متابعة'}
           style={ModalStyle.button}
-          onPress={onPress}
+          onPress={onClose}
         />
       </AppGrid>
     </Modal>
