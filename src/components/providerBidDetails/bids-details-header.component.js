@@ -12,7 +12,7 @@ export const BidDetailsHeader = ({id}) => {
       <Pressable
         style={styles.backButtonStyle}
         onPress={() => navigation.goBack()}>
-        <Ionicons name={'chevron-forward'} color={'#7267CB'} size={35} />
+        <Ionicons name={'chevron-forward'} color={'#686'} size={35} />
       </Pressable>
       <AppText text={`طلب عرض سعر (${id})`} textSize={22} fontWeight={'bold'} />
     </View>

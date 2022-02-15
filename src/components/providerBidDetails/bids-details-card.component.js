@@ -9,7 +9,7 @@ export const BidDetailsCard = ({title, text}) => {
       <View style={styles.cardContainerStyle}>
         <View style={styles.bidDetailsContainerStyle}>
           <AppText text={title} fontWeight={'bold'} />
-          <AppText text={text} textColor={'#7267CB'} />
+          <AppText text={text} textColor={'#999'} />
         </View>
       </View>
     </AppGrid>

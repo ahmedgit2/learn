@@ -8,7 +8,7 @@ export const AppDateTime = props => {
   return (
     <View style={[styles.containerStyle, style]}>
       <Text style={styles.textStyle}>{text}</Text>
-      <Fontisto name={'date'} color={'#98BAE7'} size={size || 16} />
+      <Fontisto name={'date'} color={'#999'} size={size || 16} />
     </View>
   );
 };

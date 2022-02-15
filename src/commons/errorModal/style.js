@@ -33,11 +33,11 @@ export const ModalStyle = StyleSheet.create({
   },
 
   modalText: {
-    flexWrap: 'wrap',
     marginVertical: 20,
     paddingTop: 30,
     textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold',
+    paddingHorizontal: 10,
   },
 });

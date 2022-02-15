@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   },
   textStyle: {
     marginHorizontal: 3,
-    color: '#98BAE7',
+    color: '#999',
     fontSize: 14,
   },
 });

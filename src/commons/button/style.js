@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 12,
     elevation: 2,
-    backgroundColor: '#6E3CBC',
+    backgroundColor: '#686',
     overflow: 'hidden',
     marginHorizontal: 20,
     marginVertical: 20,

@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
+import {useSelector} from 'react-redux';
 import {getProviderBids} from '../api';
 
 export const useGetProviderBids = (lat, lng, orderType) => {
@@ -10,13 +11,15 @@ export const useGetProviderBids = (lat, lng, orderType) => {
   const [pageCount, setPageCount] = useState();
   const [error, setError] = useState('');
 
+  const language = useSelector(state => state.authorization.language);
+
   useEffect(() => {
     if (page == 1) {
       getBids();
     } else if (page > 1 && pageCount >= page) {
       getBids();
     }
-  }, [page]);
+  }, [page, language]);
 
   const refreshing = () => {
     setError('');

@@ -1,4 +1,7 @@
 import {StyleSheet} from 'react-native';
+import {store} from '../../store/store';
+
+const lang = store.getState().authorization.language;
 
 export const styles = StyleSheet.create({
   headerStyle: {
@@ -21,23 +24,24 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     marginRight: 20,
     alignSelf: 'stretch',
-    alignItems: 'flex-end',
+    alignItems: lang === 'ar' ? 'flex-end' : 'flex-start',
   },
   bidDateContainerStyle: {
     flexDirection: 'row',
     flexGrow: 1,
-    alignSelf: 'flex-start',
+    alignSelf: lang === 'ar' ? 'flex-start' : 'flex-end',
+
     marginTop: 5,
     marginBottom: 10,
   },
   cardContainerStyle: {
     margin: 15,
     flexGrow: 1,
-    flexDirection: 'row',
+    flexDirection: lang === 'ar' ? 'row' : 'row-reverse',
     justifyContent: 'flex-end',
   },
   clientNameContainerStyle: {
-    flexDirection: 'row',
+    flexDirection: lang === 'ar' ? 'row' : 'row-reverse',
     flexGrow: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',

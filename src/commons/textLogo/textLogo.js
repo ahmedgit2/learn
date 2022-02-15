@@ -8,9 +8,9 @@ export const AppTextLogo = props => {
     text,
     style,
     textSize = 16,
-    textColor = '#7267CB',
+    textColor = '#666',
     logoSize = 20,
-    logoColor = '#7267CB',
+    logoColor = '#666',
     logoName = 'logo-android',
   } = props;
   return (

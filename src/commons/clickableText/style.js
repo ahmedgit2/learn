@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     fontSize: 17,
   },
   pressed: {
-    backgroundColor: 'blue',
+    backgroundColor: '#686',
   },
   pressedText: {
     color: '#fff',

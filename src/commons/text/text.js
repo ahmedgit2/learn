@@ -5,7 +5,7 @@ import {styles} from './style';
 export const AppText = props => {
   const {
     text,
-    textColor = '#6E3CBC',
+    textColor = '#222',
     textSize = 18,
     fontWeight,
     style,

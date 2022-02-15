@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -13,9 +13,13 @@ import {
   AppText,
 } from '../../commons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useSelector} from 'react-redux';
 
 export const ProviderBidsCard = ({bids, onPress}) => {
   const {client} = bids;
+
+  const language = useSelector(state => state.authorization.language);
+
   const createDate = formatDate(bids.createdAt);
   const pickUpCity = `${bids.pickUpCity.name} - ${bids.pickUpCity.governorate.name}`;
   const dropOffCity = `${bids.dropOffCity.name} -${bids.dropOffCity.governorate.name}`;

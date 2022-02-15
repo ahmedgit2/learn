@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     padding: 3,
     // backgroundColor: 'red',
   },
+
   inputCardText: {
     flexDirection: 'row',
     flexGrow: 1,

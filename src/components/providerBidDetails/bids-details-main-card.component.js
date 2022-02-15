@@ -18,7 +18,7 @@ export const BidDetailsMainCard = props => {
           </View>
 
           <View style={styles.bidDateContainerStyle}>
-            <AppText textSize={14} textColor={'#98BAE7'} text={createDay} />
+            <AppText textSize={14} textColor={'#999'} text={createDay} />
             <AppText
               style={styles.bidStatusStyle}
               textSize={14}

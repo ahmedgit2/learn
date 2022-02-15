@@ -7,6 +7,7 @@ import {useGetSpecificProviderBids} from '../hooks';
 export const ProviderBidsSpecificHOC = () => {
   const {loading, data, error, totalBidsCount, refresh, refreshing, fetchMore} =
     useGetSpecificProviderBids();
+
   const [isModalVisible, setModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   useEffect(() => {
