@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {DetailsScreen, SendBidScreen, SpecificScreen} from '../screens';
-import {TopTabNav} from './topTabNavigation';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { DetailsScreen, SendBidScreen, SpecificScreen } from '../screens';
+import { TopTabNav } from './topTabNavigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -9,27 +9,27 @@ export const HomeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        options={{
+        options={ {
           headerShown: false,
-        }}
-        name="home"
-        component={TopTabNav}
+        } }
+        name="TopTabNav"
+        component={ TopTabNav }
       />
 
       <Stack.Screen
-        options={{
+        options={ {
           headerShown: false,
-        }}
+        } }
         name="details"
-        component={DetailsScreen}
+        component={ DetailsScreen }
       />
 
       <Stack.Screen
-        options={{
+        options={ {
           headerShown: false,
-        }}
+        } }
         name="sendOffer"
-        component={SendBidScreen}
+        component={ SendBidScreen }
       />
     </Stack.Navigator>
   );

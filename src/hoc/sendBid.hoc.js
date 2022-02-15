@@ -1,9 +1,8 @@
-import React, {useRef} from 'react';
-import {useRoute} from '@react-navigation/native';
-
-import {useGetBidDetails, useGetVehicles, usePostOffer} from '../hooks';
-import {AppButton, AppLoading, AppText, ERRORModal} from '../commons';
-import {formatDate} from '../utils';
+import React, { useRef, useState } from 'react';
+import { ScrollView } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { useGetVehicles, usePostOffer } from '../hooks';
+import { AppButton, AppLoading } from '../commons';
 import {
   ClintCard,
   Header,
@@ -13,7 +12,7 @@ import {
 } from '../components';
 
 export const SendBidHOC = () => {
-  const {data} = useRoute().params;
+  const { data } = useRoute().params;
 
   providerId = 144;
   const orderBidId = data.id;
@@ -21,24 +20,25 @@ export const SendBidHOC = () => {
   const transportationPrice = useRef();
   const notes = useRef();
 
-  const {error, loading, post} = usePostOffer({
+  const { post } = usePostOffer({
     orderBidId: orderBidId,
     transportationPrice: transportationPrice.current,
     providerVehicle: providerVehicle.current,
     notes: notes.current,
   });
 
+
   const vehicles = useGetVehicles(providerId);
   if (Object.keys(vehicles).length) {
     return (
-      <>
+      <ScrollView>
         <Header />
-        <ClintCard data={data} />
-        <VehiclesCard data={vehicles.data} />
-        <InputCard />
-        <NotesCard />
-        <AppButton title={'إرسال'} />
-      </>
+        <ClintCard data={ data } />
+        <VehiclesCard data={ vehicles.data } passSelected={ (val) => providerVehicle.current = val } />
+        <InputCard onChangeText={ (value) => transportationPrice.current = value } />
+        <NotesCard onChangeText={ (value) => notes.current = value } />
+        <AppButton onPress={ () => post() } title={ 'إرسال' } />
+      </ScrollView>
     );
   } else {
     return <AppLoading />;

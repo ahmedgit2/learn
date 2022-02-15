@@ -1,24 +1,22 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
 
-import {styles} from './style';
-import {AppGrid, AppText} from '../../commons';
-import {VehiclesSelect} from '.';
+import { styles } from './style';
+import { AppGrid, AppText } from '../../commons';
+import { VehiclesSelect } from '.';
 
 export const VehiclesCard = props => {
-  const [pressed, setPressed] = useState(false);
-  const {data} = props;
+  const { data, passSelected } = props;
 
   return (
-    <AppGrid style={styles.cardGridStyle}>
-      <View style={styles.cardContainerStyle}>
-        <View style={styles.clientNameContainerStyle}>
-          <View style={styles.vehivlesContainerStyle}>
-            <AppText text={'المركبة'} fontWeight={'bold'} />
+    <AppGrid style={ styles.cardGridStyle }>
+      <View style={ styles.cardContainerStyle }>
+        <View style={ styles.clientNameContainerStyle }>
+          <View style={ styles.vehivlesContainerStyle }>
+            <AppText text={ 'المركبة' } fontWeight={ 'bold' } />
             <VehiclesSelect
-              onPress={() => setPressed(!pressed)}
-              data={data}
-              isPress={pressed}
+              passSelected={ passSelected }
+              data={ data }
             />
           </View>
         </View>

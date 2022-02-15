@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, TextInput, View, Image} from 'react-native';
+import { Text, TextInput, View, Image } from 'react-native';
 
-import {InputTextStyle} from './style';
+import { InputTextStyle } from './style';
 
 export function Input(props) {
   const {
@@ -15,23 +15,23 @@ export function Input(props) {
   } = props;
 
   return (
-    <View style={InputTextStyle.container}>
+    <View style={ InputTextStyle.container }>
       <TextInput
-        multiline={multiline}
-        numberOfLines={numberOfLines}
-        placeholder={placeholder}
-        onChangeText={onChangeText}
-        style={[
+        multiline={ multiline }
+        numberOfLines={ numberOfLines }
+        placeholder={ placeholder }
+        onChangeText={ onChangeText }
+        style={ [
           InputTextStyle.inputtext,
-          {...style},
-          errors ? {borderColor: 'red'} : {marginBottom: 10},
-        ]}
-        {...rest}
+          { ...style },
+          errors ? { borderColor: 'red' } : { marginBottom: 10 },
+        ] }
+        { ...rest }
       />
 
-      {errors ? (
-        <Text style={InputTextStyle.errorMessage}>{errors}</Text>
-      ) : null}
+      { errors ? (
+        <Text style={ InputTextStyle.errorMessage }>{ errors }</Text>
+      ) : null }
     </View>
   );
 }

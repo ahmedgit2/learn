@@ -1,16 +1,17 @@
-import {useEffect, useRef, useState} from 'react';
-import {postOffer} from '../api';
+import { useEffect, useRef, useState } from 'react';
+import { postOffer } from '../api';
 
-export const usePostOffer = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+export const usePostOffer = ({
+  orderBidId,
+  transportationPrice,
+  providerVehicle,
+  notes,
+}) => {
 
-  const post = async ({
-    orderBidId,
-    transportationPrice,
-    providerVehicle,
-    notes,
-  }) => {
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState('');
+
+  const post = async () => {
     try {
       await postOffer({
         orderBidId,
@@ -18,6 +19,8 @@ export const usePostOffer = () => {
         providerVehicle,
         notes,
       });
+
+
     } catch (error) {
       setError(error);
     } finally {

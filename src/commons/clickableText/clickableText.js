@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   TouchableHighlight,
   View,
@@ -6,19 +6,18 @@ import {
   StyleSheet,
   Pressable,
 } from 'react-native';
-import {AppNewText} from '..';
-import {styles} from './style';
+import { AppNewText } from '..';
+import { styles } from './style';
 
 export const ClickableText = props => {
-  const {isPress, children, onPress} = props;
-
+  const { children, selected, onPress } = props;
   return (
-    <View style={[styles.containerStyle, isPress && styles.pressed]}>
-      <Pressable onPress={onPress}>
-        <AppNewText style={[styles.textStyle, isPress && styles.pressedText]}>
-          {children}
+    <View style={ [ styles.containerStyle, selected === children ? styles.pressed : null ] }>
+      <Pressable onPress={ onPress } >
+        <AppNewText style={ [ styles.textStyle, selected === children ? styles.pressedText : null ] }>
+          { children }
         </AppNewText>
       </Pressable>
-    </View>
+    </View >
   );
 };

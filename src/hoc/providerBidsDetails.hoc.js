@@ -1,9 +1,9 @@
 import React from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-import {useGetBidDetails} from '../hooks';
-import {AppButton, AppLoading, AppText} from '../commons';
-import {formatDate} from '../utils';
+import { useGetBidDetails } from '../hooks';
+import { AppButton, AppLoading, AppText } from '../commons';
+import { formatDate } from '../utils';
 import {
   BidDetailsHeader,
   BidDetailsLocationCard,
@@ -12,9 +12,9 @@ import {
 } from '../components';
 
 export const ProviderBidsDetailsHOC = () => {
-  const {bidId} = useRoute().params;
+  const { bidId } = useRoute().params;
   const navigation = useNavigation();
-  const {loading, data, error} = useGetBidDetails(bidId);
+  const { loading, data, error } = useGetBidDetails(bidId);
 
   if (Object.keys(data).length) {
     const executionDate = formatDate(data.executionDate);
@@ -23,15 +23,15 @@ export const ProviderBidsDetailsHOC = () => {
       data.serviceType == 'HOUR' ? 'بالساعة' : data.serviceType;
     return (
       <>
-        <BidDetailsHeader id={bidId} />
-        <BidDetailsMainCard data={data} />
-        <BidDetailsLocationCard data={data} />
-        <BidDetailsCard title={'نوع المركبة'} text={vehicleType} />
-        <BidDetailsCard title={'الخدمة المطلوبة'} text={serviceType} />
-        <BidDetailsCard title={'تاريخ التنفيذ'} text={executionDate} />
+        <BidDetailsHeader id={ bidId } />
+        <BidDetailsMainCard data={ data } />
+        <BidDetailsLocationCard data={ data } />
+        <BidDetailsCard title={ 'نوع المركبة' } text={ vehicleType } />
+        <BidDetailsCard title={ 'الخدمة المطلوبة' } text={ serviceType } />
+        <BidDetailsCard title={ 'تاريخ التنفيذ' } text={ executionDate } />
         <AppButton
-          title={'تقديم عرض سعر'}
-          onPress={navigation.navigate('sendOffer', {data: data})}
+          title={ 'تقديم عرض سعر' }
+          onPress={ () => navigation.navigate('sendOffer', { data: data }) }
         />
       </>
     );
