@@ -1,30 +1,20 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {HomeHeader} from '../components';
-import {useSelector, useDispatch} from 'react-redux';
-import {setLanguage} from '../slices/authorizationSlice';
+import {useDispatch} from 'react-redux';
 import {TopTabNav} from '../navigator/topTabNavigation';
+import {setKey} from '../slices/authorizationSlice';
+import {useNavigation} from '@react-navigation/native';
 
 export const HomeScreenHOC = () => {
-  const language = useSelector(state => state.authorization.language);
   const dispatch = useDispatch();
-
-  const toggleLang = () => {
-    let currentLang = language;
-    if (currentLang === 'en') {
-      currentLang = 'ar';
-    } else {
-      currentLang = 'en';
-    }
-    return currentLang;
-  };
-
+  const navigation = useNavigation();
   return (
     <>
       <HomeHeader
-        language={language}
         onPress={() => {
-          dispatch(setLanguage(toggleLang()));
+          dispatch(setKey(''));
+          navigation.replace('login');
         }}
       />
       <TopTabNav />

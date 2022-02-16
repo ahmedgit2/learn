@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
   buttonStyle: {
     padding: 5,
     height: 40,
-    width: 120,
-    // alignSelf: 'flex-end',
+    width: 80,
+    alignSelf: 'flex-end',
   },
   textStyle: {
     marginHorizontal: 15,

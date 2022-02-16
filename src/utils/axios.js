@@ -10,8 +10,8 @@ instance.interceptors.request.use(
   config => {
     config.headers = {
       ...config.headers,
-      'Accept-Language': store.getState().authorization.language,
-      Authorization: `Bearer ${store.getState().authorization.authKey}`,
+      'Accept-Language': store.getState().auth.language,
+      Authorization: `Bearer ${store.getState().auth.authKey}`,
     };
     // console.log('interceptors config ==>', config);
     return config;

@@ -11,13 +11,14 @@ export const ProviderBidsHOC = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const language = useSelector(state => state.authorization.language);
+  //   const language = useSelector(state => state.auth.language);
 
   useEffect(() => {
     if (error) {
       setErrorMessage(error);
     }
   }, [error]);
+
   const _onClose = () => {
     setModalVisible(false);
   };

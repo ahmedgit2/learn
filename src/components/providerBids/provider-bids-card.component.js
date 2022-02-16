@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {View} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 import {AppButton, AppImage, AppNewText} from '../../commons';
 import {formatDate} from '../../utils/formatDate';
-import {styles} from './style';
+import {styles as style} from './style';
 import {
   AppDateTime,
   AppGrid,
@@ -18,7 +18,8 @@ import {useSelector} from 'react-redux';
 export const ProviderBidsCard = ({bids, onPress}) => {
   const {client} = bids;
 
-  const language = useSelector(state => state.authorization.language);
+  const language = useSelector(state => state.auth.language);
+  const styles = useMemo(() => style(language), [language]);
 
   const createDate = formatDate(bids.createdAt);
   const pickUpCity = `${bids.pickUpCity.name} - ${bids.pickUpCity.governorate.name}`;

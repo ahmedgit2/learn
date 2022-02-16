@@ -11,15 +11,13 @@ export const useGetSpecificProviderBids = (lat, lng, orderType) => {
   const [pageCount, setPageCount] = useState();
   const [error, setError] = useState('');
 
-  const language = useSelector(state => state.authorization.language);
-
   useEffect(() => {
     if (page == 1) {
       getBids();
     } else if (page > 1 && pageCount >= page) {
       getBids();
     }
-  }, [page, language]);
+  }, [page]);
 
   const refreshing = () => {
     setError('');

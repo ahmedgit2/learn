@@ -1,13 +1,29 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {DetailsScreen, HomeScreen, SendBidScreen} from '../screens';
+import {
+  DetailsScreen,
+  HomeScreen,
+  LoginScreen,
+  SendBidScreen,
+} from '../screens';
 import {TopTabNav} from './topTabNavigation';
+import {store} from '../store/store';
+import {useSelector} from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
 export const HomeStack = () => {
+  const authKey = useSelector(state => state.auth.authKey);
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName={authKey ? 'home' : 'login'}>
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="login"
+        component={LoginScreen}
+      />
       <Stack.Screen
         options={{
           headerShown: false,

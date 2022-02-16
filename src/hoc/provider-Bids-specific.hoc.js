@@ -10,6 +10,7 @@ export const ProviderBidsSpecificHOC = () => {
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
   useEffect(() => {
     if (error) {
       setErrorMessage(error);
@@ -18,6 +19,7 @@ export const ProviderBidsSpecificHOC = () => {
   const _onClose = () => {
     setModalVisible(false);
   };
+
   if (data && !refresh) {
     return (
       <>
