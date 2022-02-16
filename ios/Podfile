@@ -14,6 +14,8 @@ target 'learn' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
 
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+
   target 'learnTests' do
     inherit! :complete
     # Pods for testing
